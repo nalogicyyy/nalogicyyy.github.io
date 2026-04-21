@@ -1,0 +1,387 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+}
+
+body {
+  background: #fff9e6;
+}
+
+/* 导航栏 */
+.navbar {
+  margin: 0 auto; 
+  width: 100%;
+  padding: 15px 0;
+  min-height: 50px; 
+  display: flex;
+  justify-content:center;
+  background-color:hwb(34 27% 9%);
+}
+.home {
+  width: 100%;
+  height: 1000px;
+   background-size: cover;       /* 图片按比例铺满容器，不变形 */
+  background-position: center;  /* 图片居中，不会裁掉重要部分 */
+  background-repeat: no-repeat; /* 禁止图片重复平铺 */
+  margin-top: 33px;
+   background-image: url("./image/images/background_Homepage.png");
+}
+.hero-img {
+  width: 30%; /* 占父容器的30%宽度 */
+  max-width: 900px; /* 最大不超过900px */
+  height: auto;
+  margin: 20px auto; /* 上下20px边距，水平居中 */
+  transform: translateY(-60px);
+}
+.hero-img:hover {
+   transform: scale(1.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+
+.nav-container {
+  display: flex;         /* 开启弹性布局，子元素强制一行 */
+  justify-content:space-between; /* 让按钮整体居中 */
+  align-items: center;     /* 按钮垂直对齐，不会高低不齐 */
+   width: 100%; /* 强制占满 .navbar 的宽度 */
+  flex-wrap: nowrap;      /* 强制不换行，这行才是防转弯的关键 */
+}
+
+
+.nav-item {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  white-space: nowrap; /* 防止文字换行 */
+  /* 给按钮加一点内边距，让它不挤 */
+  padding: 2px 16px;
+}
+
+.nav-item {
+  color: #1b1a1a;
+}
+
+.nav-item:hover {
+  color: lab(49.65% 61.63 38.24);
+}
+
+/* 通用容器 */
+.content-container {
+  width: 100%;
+  margin: 20px auto;
+}
+
+/* 卡片 */
+.img-placeholder img{
+
+   width:200px;   /* 宽度 */
+  height: auto;  /* 高度自动跟着比例走，不变形 */
+}
+.img-placeholder img:hover {
+transform: rotate(-10deg);/*逆时针旋转*/
+}
+.intr {
+  height :70px;
+  background-image: url("./image/images/decoration_Transition.png");
+  background-size: cover;      /* 让图片铺满容器 */
+  background-position: center;  /* 居中显示 */
+  background-repeat: no-repeat; /* 不重复 */
+  width: 100%;
+}
+.intr p{
+  font-size:32px;
+   display: flex;      /* 开启 Flex 布局 */
+  justify-content: center; /* 水平居中 */
+  margin: 12px;
+}
+.detail-card {
+  width:100%;
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 50px;
+  
+}
+
+.detail-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.text-content h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.text-content h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.quote-blue {
+  font-size: 28px;
+  color: #4a90e2;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+.quote-pink {
+  font-size: 28px;
+  color: #f06292;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+.quote-cyan {
+  font-size: 28px;
+  color: #26a69a;
+  font-style: italic;
+  margin-bottom: 25px;
+}
+
+.text-block p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.text-block strong {
+  color: #000;
+}
+
+.illustration-right img,
+.illustration-left img {
+  width: 360px;
+  height: auto;
+}
+
+.page {
+  text-align: center;
+  border: 3px solid #888;  /* 宽度  样式  颜色 */
+  border-radius: 10px; /* 圆角（可选，不要就删掉） */
+  position: relative;
+  overflow: visible;
+  margin: auto;
+  padding: 30px 20px; /* 上下30px，左右20px，可根据需要调整 */
+}
+.corner {
+  position: absolute;
+  width: 100px;    /* 你的角标大小 */
+  height: 60px;
+  background-image: url("./image/images/decoration_Decoration.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+/* 蝴蝶样式 */
+.corner00 {
+  position: absolute;
+  /* 你的路径，你说没问题就不动 */
+  background-image: url("./image/images/decoration_Butterfly.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;
+  height: 100px;
+  top: 630px; 
+  right: 10px;
+  transition: transform 0.3s ease; 
+}
+.corner00:hover {
+ transform: translateY(5px); 
+}
+
+/* 左上角：原图 */
+.corner.tl {
+  top: 0;
+  left: 0;
+}
+
+/* 右上角：水平镜像 */
+.corner.tr {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* 右下角：水平+垂直镜像（180度翻转） */
+.corner.br {
+  bottom: 0;
+  right: 0;
+  transform: scaleX(-1) scaleY(-1);
+}
+
+/* 左下角：垂直镜像 */
+.corner.bl {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+.about-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width:100%;
+}
+
+.about-card {
+  background: white;
+  border: 5px solid #9c27b0;
+  border-radius: 20px;
+  padding: 30px;
+  width: 28%;
+}
+
+.about-card .icon {
+  font-size:24px;
+  margin-bottom: 10px;
+  width:30%;
+}
+.about-card:hover {
+  transform: scale(1.2);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Contact */
+.contact-page {
+  background: white;
+  border-radius: 15px;
+  padding: 50px;
+  position: relative;
+    background-image: 
+    url("./image/images/decoration_TreeWithSometing.png"),  /* 左边图 */
+    url("./image/images/decoration_Tree.png"),  /* 右边图 */
+    url("./image/images/decoration_Ladybug.png") , /* 左下边图 */
+    url("./image/images/decoration_Chameleon.png");  /* 右下边图 */
+  
+  /* 位置：左 / 右 */
+  background-position: left top, right center ,left bottom,right 150px bottom;
+  
+  /* 不重复 */
+  background-repeat: no-repeat, no-repeat,no-repeat,no-repeat;
+  
+  /* 图片大小（可自行调整） */
+  background-size: 150px 300px, 150px 600px, 60px 60px,150px 150px;
+  
+}
+
+.contact-text {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.contact-text ul {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+.contact-text li {
+  font-size: 22px;
+  line-height: 2;
+}
+
+.contact-text .ps {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.contact-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Q&A */
+.qa-page {
+  background-image: url("./image/images/background_QA.png");
+  border-radius: 15px;
+  padding: 40px;
+  /* 去掉固定高度，自适应内容！ */
+  height: auto;
+  min-height: fit-content;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.qa-list {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 所有问题统一间距！ */
+}
+
+.qa-item { 
+ font-size: 16px;
+ line-height: 1.5;
+ text-align: center;
+ font-weight: bold;
+ cursor: pointer;
+ width: 100%;
+}
+
+/* 修复：取消绝对定位，正常撑开页面 */
+.tooltip {
+  background: #88bfff;
+  color: white;
+  padding: 0 16px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  /* 默认收起 */
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+/* hover 展开，自动撑开布局 */
+.qa-item:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  max-height: 500px;
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+/* 首页 */
+.home {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.home h1 {
+  font-size: 120px;
+  font-weight: 900;
+  letter-spacing: 10px;
+}
+html {
+  scroll-behavior: smooth; /* 关键！开启平滑滚动 */
+}
