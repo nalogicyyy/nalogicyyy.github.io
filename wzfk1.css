@@ -1,138 +1,153 @@
+/* 全局样式重置：选中页面所有元素 */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Microsoft YaHei", Arial, sans-serif;
+  margin: 0;            /* 清除所有元素默认外边距 */
+  padding: 0;           /* 清除所有元素默认内边距 */
+  box-sizing: border-box;/* 盒子模型：宽高包含边框和内边距，布局更稳定 */
+  font-family: "Microsoft YaHei", Arial, sans-serif; /* 设置全局字体：微软雅黑 + 备选字体 */
 }
 
+/* 页面主体样式 */
 body {
-  background: #fff9e6;
+  background: #fff9e6;   /* 设置页面整体背景色为浅黄色 */
 }
 
-/* 导航栏 */
+/* --------------------- 导航栏样式 --------------------- */
 .navbar {
-  margin: 0 auto; 
-  width: 100%;
-  padding: 15px 0;
-  min-height: 50px; 
-  display: flex;
-  justify-content:center;
-  background-color:hwb(34 27% 9%);
+  margin: 0 auto;        /* 水平居中 (上下为0，左右自动)*/
+  width: 100%;           /* 宽度占满整个屏幕 */
+  padding: 15px 0;       /* 上下内边距15px，左右无内边距 */
+  min-height: 50px;      /* 最小高度50px，保证导航栏不会被压扁 */
+  display: flex;         /* 开启弹性布局，子元素可以灵活排列 */
+  justify-content:center;/* 子元素水平居中 */
+  background-color:hwb(34 27% 9%); /* 导航栏背景色：暖黄色 */
+  box-sizing: border-box; /* 关键：把 padding 和 border 算进 100% 宽度里 */
 }
+
+/* 首页大图区域 */
 .home {
-  width: 100%;
-  height: 1000px;
-   background-size: cover;       /* 图片按比例铺满容器，不变形 */
-  background-position: center;  /* 图片居中，不会裁掉重要部分 */
-  background-repeat: no-repeat; /* 禁止图片重复平铺 */
-  margin-top: 33px;
-   background-image: url("./image/images/background_Homepage.png");
+  width: 100%;           /* 宽度100% */
+  height: 1000px;        /* 高度固定1000px */
+  background-size: cover;/* 背景图片按比例铺满容器，不变形 */
+  background-position: center; /* 背景图片居中显示 */
+  background-repeat: no-repeat; /* 背景图片不重复平铺 */
+  margin-top: 33px;      /* 距离上方导航栏33px间距 */
+  background-image: url("./image/images/background_Homepage.png"); /* 设置首页背景图路径 */
 }
+
+/* 首页标题/主体图片样式 */
 .hero-img {
-  width: 30%; /* 占父容器的30%宽度 */
-  max-width: 900px; /* 最大不超过900px */
-  height: auto;
-  margin: 20px auto; /* 上下20px边距，水平居中 */
-  transform: translateY(-60px);
+  width: 30%;            /* 宽度占父容器的30% */
+  max-width: 900px;      /* 最大宽度不超过900px，防止过大 */
+  height: auto;          /* 高度自适应，保持图片比例 */
+  margin: 20px auto;     /* 上下20px间距，左右自动居中 */
+  transform: translateY(-60px); /* 向上偏移60px，微调位置 */
 }
+
+/* 鼠标悬浮在主体图片上的效果 */
 .hero-img:hover {
-   transform: scale(1.2);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2); /* 图片放大1.2倍 */
+  transition: all 0.4s ease;/*cubic-bezier(0.25, 0.8, 0.25, 1); *//* 平滑过渡动画，0.4秒完成 */
 }
 
-
+/* 导航容器：包裹导航按钮 */
 .nav-container {
-  display: flex;         /* 开启弹性布局，子元素强制一行 */
-  justify-content:space-between; /* 让按钮整体居中 */
-  align-items: center;     /* 按钮垂直对齐，不会高低不齐 */
-   width: 100%; /* 强制占满 .navbar 的宽度 */
-  flex-wrap: nowrap;      /* 强制不换行，这行才是防转弯的关键 */
+  display: flex;         /* 弹性布局，子元素横向排列 */
+  justify-content:space-between; /* 子元素两端对齐 */
+  align-items: center;    /* 子元素垂直居中对齐 */
+  width: 100%;            /* 占满父容器宽度 */
+  flex-wrap: nowrap;      /* 强制不换行，防止导航按钮折行 */
 }
 
-
+/* 导航每一项按钮样式 */
 .nav-item {
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.3s;
-  white-space: nowrap; /* 防止文字换行 */
-  /* 给按钮加一点内边距，让它不挤 */
-  padding: 2px 16px;
+  color: #1b1a1a;           /* 设置文字颜色*/
+  font-size: 16px;       /* 文字大小16px */
+  font-weight: bold;     /* 文字加粗 */
+  text-decoration: none; /* 去掉下划线（a标签默认样式） */
+  transition: 0.3s;      /* 样式变化时0.3秒平滑过渡 */
+  white-space: nowrap;   /* 文字不换行 */
+  padding: 2px 16px;     /* 上下内边距2px，左右16px，扩大点击区域 */
 }
-
-.nav-item {
-  color: #1b1a1a;
-}
-
+/* 鼠标悬浮在导航项上 */
 .nav-item:hover {
-  color: lab(49.65% 61.63 38.24);
+  color: lab(49.65% 61.63 38.24); /* 文字变色 */
 }
 
-/* 通用容器 */
+/* --------------------- 通用内容容器 --------------------- */
 .content-container {
-  width: 100%;
-  margin: 20px auto;
+  width: 100%;           /* 宽度100% */
+  margin: 20px auto;     /* 上下20px间距，水平居中 */
 }
 
-/* 卡片 */
+/* --------------------- 卡片图片区域 --------------------- */
 .img-placeholder img{
-
-   width:200px;   /* 宽度 */
-  height: auto;  /* 高度自动跟着比例走，不变形 */
+  width:200px;           /* 图片固定宽度200px */
+  height: auto;          /* 高度自适应，保持比例不变形 */
 }
+
+/* 卡片图片悬浮效果：旋转 */
 .img-placeholder img:hover {
-transform: rotate(-10deg);/*逆时针旋转*/
+  transform: rotate(-10deg); /* 逆时针旋转10度 */
 }
+
+/* 装饰过渡条（标题下方装饰条） */
 .intr {
-  height :70px;
-  background-image: url("./image/images/decoration_Transition.png");
-  background-size: cover;      /* 让图片铺满容器 */
-  background-position: center;  /* 居中显示 */
+  height:70px;           /* 高度70px */
+  background-image: url("./image/images/decoration_Transition.png"); /* 装饰图路径 */
+  background-size: cover; /* 图片铺满容器 */
+  background-position: center; /* 图片居中 */
   background-repeat: no-repeat; /* 不重复 */
-  width: 100%;
+  width: 100%;           /* 宽度100% */
 }
+
+/* 装饰条内文字 */
 .intr p{
-  font-size:32px;
-   display: flex;      /* 开启 Flex 布局 */
+  font-size:32px;        /* 文字大小32px */
+  display: flex;         /* 弹性布局 */
   justify-content: center; /* 水平居中 */
-  margin: 12px;
+  margin: 12px;          /* 外边距12px */
 }
+
+/* --------------------- 详情卡片（左右布局） --------------------- */
 .detail-card {
-  width:100%;
-  background: white;
-  border-radius: 15px;
-  padding: 40px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 50px;
-  margin-bottom: 50px;
-  
+  width:100%;            /* 宽度100% */
+  background: white;     /* 背景白色 */
+  border-radius: 15px;   /* 圆角15px */
+  padding: 40px;         /* 内边距40px */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /*box-shadow: 水平偏移 垂直偏移 模糊度 颜色; 轻微阴影，提升层次感 */
+  display: flex;         /* 弹性布局 → 图片+文字左右排列 */
+  justify-content: space-between; /* 两端分开 */
+  align-items: center;    /* 垂直居中 */
+  gap: 50px;             /* 图片和文字之间间距50px */
+  margin-bottom: 50px;   /* 卡片下方外边距50px */
 }
 
+/* 反向排列卡片：图片右 ↔ 文字左 */
 .detail-card.reverse {
-  flex-direction: row-reverse;
+  flex-direction: row-reverse; /* 弹性布局方向反转 */
 }
 
+/* 文字内容标题1 */
 .text-content h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
+  font-size: 36px;       /* 字号36px */
+  margin-bottom: 20px;   /* 下方间距20px */
 }
 
+/* 文字内容标题2 */
 .text-content h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
+  font-size: 32px;       /* 字号32px */
+  margin-bottom: 15px;   /* 下方间距15px */
 }
 
+/* 引用文字样式 - 蓝色 */
 .quote-blue {
-  font-size: 28px;
-  color: #4a90e2;
-  font-style: italic;
-  margin-bottom: 25px;
+  font-size: 28px;       /* 字号28px */
+  color: #4a90e2;        /* 文字蓝色 */
+  font-style: italic;    /* 斜体 */
+  margin-bottom: 25px;   /* 下方间距25px */
 }
 
+/* 引用文字样式 - 粉色 */
 .quote-pink {
   font-size: 28px;
   color: #f06292;
@@ -140,6 +155,7 @@ transform: rotate(-10deg);/*逆时针旋转*/
   margin-bottom: 25px;
 }
 
+/* 引用文字样式 - 青色 */
 .quote-cyan {
   font-size: 28px;
   color: #26a69a;
@@ -147,147 +163,167 @@ transform: rotate(-10deg);/*逆时针旋转*/
   margin-bottom: 25px;
 }
 
+/* 普通文字段落 */
 .text-block p {
-  font-size: 18px;
-  line-height: 1.8;
-  color: #333;
-  margin-bottom: 18px;
+  font-size: 18px;       /* 字号18px */
+  line-height: 1.8;      /* 行高1.8倍，阅读更舒适 */
+  color: #333;           /* 深灰色文字 */
+  margin-bottom: 18px;   /* 段落下方间距18px */
 }
 
+/* 文字加粗样式 */
 .text-block strong {
-  color: #000;
+  color: #000;           /* 加粗文字为纯黑 */
 }
 
+/* 左右侧插图图片 */
 .illustration-right img,
 .illustration-left img {
-  width: 360px;
-  height: auto;
+  width: 360px;          /* 图片宽度360px */
+  height: auto;          /* 高度自适应 */
 }
 
+/* --------------------- 带边框的页面容器 --------------------- */
 .page {
-  text-align: center;
-  border: 3px solid #888;  /* 宽度  样式  颜色 */
-  border-radius: 10px; /* 圆角（可选，不要就删掉） */
-  position: relative;
-  overflow: visible;
-  margin: auto;
-  padding: 30px 20px; /* 上下30px，左右20px，可根据需要调整 */
-}
-.corner {
-  position: absolute;
-  width: 100px;    /* 你的角标大小 */
-  height: 60px;
-  background-image: url("./image/images/decoration_Decoration.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-/* 蝴蝶样式 */
-.corner00 {
-  position: absolute;
-  /* 你的路径，你说没问题就不动 */
-  background-image: url("./image/images/decoration_Butterfly.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 100px;
-  height: 100px;
-  top: 630px; 
-  right: 10px;
-  transition: transform 0.3s ease; 
-}
-.corner00:hover {
- transform: translateY(5px); 
+  text-align: center;     /* 文字居中 */
+  border: 3px solid #888; /* 灰色边框，宽度3px */
+  border-radius: 10px;    /* 边框圆角10px */
+  position: relative;     /* 相对定位 → 给角标做参考 */
+  overflow: visible;      /* 内容超出不隐藏 */
+  margin: auto;           /* 水平居中 */
+  padding: 30px 20px;     /* 上下内边距30px，左右20px */
 }
 
-/* 左上角：原图 */
+/* 四个角装饰角标 */
+.corner {
+  position: absolute;     /* 绝对定位，依附于.page */
+  width: 100px;           /* 角标宽度100px */
+  height: 60px;           /* 角标高度60px */
+  background-image: url("./image/images/decoration_Decoration.png"); /* 角标图片 */
+  background-size: contain; /* 图片完整显示 */
+  background-repeat: no-repeat; /* 不重复 */
+}
+
+/* 蝴蝶装饰 */
+.corner00 {
+  position: absolute;     /* 绝对定位 */
+  background-image: url("./image/images/decoration_Butterfly.png"); /* 蝴蝶图片 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100px;  
+  height: 100px;
+  top: 630px;             /* 距离顶部630px */
+  right: 10px;            /* 距离右侧10px */
+  transition: transform 0.3s ease; /* 悬浮动画0.3秒 */
+}
+
+/* 蝴蝶悬浮：向下微动 */
+.corner00:hover {
+  transform: translateY(5px); /* 向下移动5px */
+}
+
+/* 左上角角标：正常显示 */
 .corner.tl {
   top: 0;
   left: 0;
 }
 
-/* 右上角：水平镜像 */
+/* 右上角角标：水平镜像翻转 */
 .corner.tr {
   top: 0;
   right: 0;
   transform: scaleX(-1);
 }
 
-/* 右下角：水平+垂直镜像（180度翻转） */
+/* 右下角角标：水平+垂直翻转（180度） */
 .corner.br {
   bottom: 0;
   right: 0;
   transform: scaleX(-1) scaleY(-1);
 }
 
-/* 左下角：垂直镜像 */
+/* 左下角角标：垂直翻转 */
 .corner.bl {
   bottom: 0;
   left: 0;
   transform: scaleY(-1);
 }
 
+/* --------------------- 关于我们卡片组 --------------------- */
 .about-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  width:100%;
+  display: flex;          /* 弹性布局，横向排列 */
+  justify-content: center;/* 居中 */
+  gap: 30px;              /* 卡片之间间距30px */
+  width:90%;
+  height:600px;
 }
 
+/* 单个关于卡片 */
 .about-card {
-  background: white;
-  border: 5px solid #9c27b0;
-  border-radius: 20px;
-  padding: 30px;
-  width: 28%;
+  background: white;      /* 白色背景 */
+  border: 5px solid #9c27b0; /* 紫色边框5px */
+  border-radius: 20px;    /* 圆角20px */
+  padding: 30px;          /* 内边距30px */
+  width:28%;           /* 宽度占18%，一行大约放3个 */
+   height: 100%;          /*  让卡片撑满父容器的高度 */
 }
 
+/* 卡片内图标 */
 .about-card .icon {
-  font-size:24px;
-  margin-bottom: 10px;
-  width:30%;
+  font-size:24px;         /* 图标字号24px */
+  margin-bottom: 10px;    /* 下方间距10px */
+  width:30%;              /* 宽度30% */
 }
+
+/* 卡片悬浮放大效果 */
 .about-card:hover {
-  transform: scale(1.2);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(1.2);  /* 放大1.2倍 */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* 平滑动画 */
 }
 
-/* Contact */
+/* --------------------- 联系我们页面 --------------------- */
 .contact-page {
-  background: white;
-  border-radius: 15px;
-  padding: 50px;
-  position: relative;
-    background-image: 
-    url("./image/images/decoration_TreeWithSometing.png"),  /* 左边图 */
-    url("./image/images/decoration_Tree.png"),  /* 右边图 */
-    url("./image/images/decoration_Ladybug.png") , /* 左下边图 */
-    url("./image/images/decoration_Chameleon.png");  /* 右下边图 */
+  background: white;      /* 白色背景 */
+  border-radius: 15px;    /* 圆角15px */
+  padding: 50px;          /* 内边距50px */
+  position: relative;     /* 相对定位 */
   
-  /* 位置：左 / 右 */
-  background-position: left top, right center ,left bottom,right 150px bottom;
+  /* 同时设置4张背景装饰图 */
+  background-image: 
+    url("./image/images/decoration_TreeWithSometing.png"),  /* 左上图 */
+    url("./image/images/decoration_Tree.png"),               /* 右中图 */
+    url("./image/images/decoration_Ladybug.png"),            /* 左下图 */
+    url("./image/images/decoration_Chameleon.png");         /* 右下图 */
   
-  /* 不重复 */
-  background-repeat: no-repeat, no-repeat,no-repeat,no-repeat;
+  /* 4张图分别的位置 */
+  background-position: left top, right center, left bottom, right 150px bottom;
   
-  /* 图片大小（可自行调整） */
-  background-size: 150px 300px, 150px 600px, 60px 60px,150px 150px;
+  /* 都不重复 */
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
   
+  /* 4张图分别大小 */
+  background-size: 150px 300px, 150px 600px, 60px 60px, 150px 150px;
 }
 
+/* 联系文字区域 */
 .contact-text {
-  max-width: 850px;
-  margin: 0 auto;
+  max-width: 850px;       /* 最大宽度850px */
+  margin: 0 auto;         /* 居中 */
 }
 
+/* 列表样式 */
 .contact-text ul {
-  list-style: none;
-  margin-bottom: 30px;
+  list-style: none;       /* 去掉默认小圆点 */
+  margin-bottom: 30px;    /* 下方间距30px */
 }
 
+/* 列表项文字 */
 .contact-text li {
-  font-size: 22px;
-  line-height: 2;
+  font-size: 22px;        /* 字号22px */
+  line-height: 2;        /* 行高2倍 */
 }
 
+/* 备注文字 */
 .contact-text .ps {
   font-size: 18px;
   color: #666;
@@ -295,31 +331,32 @@ transform: rotate(-10deg);/*逆时针旋转*/
   margin-bottom: 40px;
 }
 
+/* 联系按钮组 */
 .contact-buttons {
   display: flex;
   justify-content: center;
   gap: 30px;
 }
 
+/* 联系按钮样式 */
 .contact-btn {
-  background: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 30px;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
+  background: #4caf50;    /* 绿色背景 */
+  color: white;           /* 白色文字 */
+  border: none;           /* 无边框 */
+  border-radius: 10px;    /* 圆角10px */
+  padding: 12px 30px;     /* 内边距 */
+  font-size: 20px;        /* 字号 */
+  font-weight: bold;      /* 加粗 */
+  cursor: pointer;        /* 鼠标变成小手 */
 }
 
-/* Q&A */
+/* --------------------- 问答页面 --------------------- */
 .qa-page {
-  background-image: url("./image/images/background_QA.png");
+  background-image: url("./image/images/background_QA.png"); /* 问答背景图 */
   border-radius: 15px;
   padding: 40px;
-  /* 去掉固定高度，自适应内容！ */
-  height: auto;
-  min-height: fit-content;
+  height: auto;               /* 高度自适应内容 */
+  min-height: fit-content;    /* 最小高度包裹内容 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -327,61 +364,66 @@ transform: rotate(-10deg);/*逆时针旋转*/
   width: 100%;
 }
 
+/* 问答列表容器 */
 .qa-list {
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: 12px; /* 所有问题统一间距！ */
+  flex-direction: column;     /* 垂直排列 */
+  gap: 12px;                  /* 每个问题之间间距12px */
 }
 
+/* 单个问答项 */
 .qa-item { 
  font-size: 16px;
  line-height: 1.5;
  text-align: center;
  font-weight: bold;
- cursor: pointer;
+ cursor: pointer;             /* 鼠标小手 */
  width: 100%;
 }
 
-/* 修复：取消绝对定位，正常撑开页面 */
+/* 答案提示框：默认隐藏 */
 .tooltip {
-  background: #88bfff;
+  background: #88bfff;        /* 浅蓝色背景 */
   color: white;
   padding: 0 16px;
   border-radius: 8px;
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  /* 默认收起 */
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+  
+  max-height: 0;              /* 高度为0 → 隐藏 */
+  overflow: hidden;           /* 超出隐藏 */
+  opacity: 0;                 /* 透明度0 */
+  visibility: hidden;         /* 不可见 */
+  transition: all 0.3s ease;  /* 展开动画0.3秒 */
 }
 
-/* hover 展开，自动撑开布局 */
+/* 鼠标悬浮问题 → 答案展开显示 */
 .qa-item:hover .tooltip {
   opacity: 1;
   visibility: visible;
-  max-height: 500px;
-  padding: 12px 16px;
-  margin-top: 8px;
+  max-height: 500px;          /* 最大高度500px，足够显示内容 */
+  padding: 12px 16px;         /* 展开后内边距 */
+  margin-top: 8px;            /* 与问题间距8px */
 }
 
-/* 首页 */
+/* --------------------- 首页文字样式 --------------------- */
 .home {
-  text-align: center;
+  text-align: center;         /* 文字居中 */
   padding: 80px 20px;
 }
 
+/* 首页大标题 */
 .home h1 {
-  font-size: 120px;
-  font-weight: 900;
-  letter-spacing: 10px;
+  font-size: 120px;           /* 超大字号 */
+  font-weight: 900;           /* 最粗 */
+  letter-spacing: 10px;        /* 字间距10px */
 }
+
+/* 全局页面配置 */
 html {
-  scroll-behavior: smooth; /* 关键！开启平滑滚动 */
+  scroll-behavior: smooth;     /* 开启页面平滑滚动，点击锚点不生硬跳转 */
 }
