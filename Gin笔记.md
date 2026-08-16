@@ -269,4 +269,127 @@ Param、Query、PostForm、ShouldBindJSON
 String、JSON
 ### 文件上传
 FormFile、SaveUploadedFile
-> 其余方法不需要死记，做对应功能再查阅即可
+## 进阶
+## 一、文件上传
+```
+//设置最大上传内存
+r.MaxMultipartMemory = 8 << 20 //8MB
+
+r.POST("/upload", func(c *gin.Context) {
+	//前端表单name="file"
+	file,err := c.FormFile("file")
+	if err != nil {
+		c.JSON(400,gin.H{"msg":"获取文件失败"})
+		return
+	}
+	//保存到磁盘，生产环境不要直接用file.Filename，存在安全风险
+	err = c.SaveUploadedFile(file,"./"+file.Filename)
+	if err != nil {
+		c.JSON(500,gin.H{"msg":"保存失败"})
+		return
+	}
+	c.JSON(200,gin.H{"msg":"上传成功"})
+})
+```
+## 二、Cookie & Session
+Cookie
+数据保存在用户浏览器本地；用户可以查看、修改、删除；不能存敏感数据。
+```
+//设置cookie
+c.SetCookie("username","zhangsan",3600,"/","",false,true)
+//读取cookie
+val,err := c.Cookie("username")
+//删除cookie：过期时间设为‑1
+c.SetCookie("username","",‑1,"/","",false,true)
+```
+Session
+真实业务数据保存在服务器；浏览器只存一个 session‑id（放在 cookie），安全。
+Gin 原生无 session，需要第三方包 gin‑contrib/sessions
+```
+store,_ := sessions.NewCookieStore([]byte("密钥"))
+r.Use(sessions.Sessions("mysession",store))
+
+sess := sessions.Default(c)
+sess.Set("userId",1001)
+sess.Save() //必须save才生效
+
+//读取
+id := sess.Get("userId")
+//清空
+sess.Clear()
+sess.Save()
+```
+
+| |Cookie|	Session|
+|---|--|----|
+|存储位置	|用户浏览器	|服务器|
+|用户篡改	|可以篡改	|无法篡改真实业务数据|
+|敏感数据	|禁止存放	|可以存放|
+## 三、统一返回封装
+所有接口返回格式统一，减少重复代码
+```
+func Success(c *gin.Context, data interface{}, msg string) {
+	c.JSON(200, gin.H{
+		"code":200,
+		"msg":msg,
+		"data":data,
+	})
+}
+
+func Fail(c *gin.Context, code int, msg string) {
+	c.JSON(200, gin.H{
+		"code":code,
+		"msg":msg,
+		"data":nil,
+	})
+}
+
+//接口中调用
+Success(c, gin.H{"name":"张三"},"查询成功")
+Fail(c,400,"参数错误")
+```
+## 四、GORM 基础（MySQL ORM）
+ORM：写 Go 结构体，自动生成 SQL，不用手写大量 SQL 语句
+1. 模型定义
+```
+type User struct {
+	gorm.Model //内置ID、CreatedAt、UpdatedAt、DeletedAt(软删除)
+	Name string `gorm:"size:32"`
+	Age int
+}
+```
+1. 连接数据库
+```
+dsn := "root:123456@tcp(127.0.0.1:3306)/testdb?charset=utf8mb4&parseTime=True&loc=Local"
+db,err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+```
+1. 自动建表
+```
+db.AutoMigrate(&User{})
+```
+4.CRUD
+```
+//新增
+u := User{Name:"张三",Age:18}
+db.Create(&u)
+
+//id查询单条
+var user User
+db.First(&user,1)
+
+//条件查询
+db.Where("name = ?","张三").First(&user)
+
+//更新
+db.Model(&user).Update("age",20)
+
+//删除：软删除，不会真正删除数据，给DeletedAt打时间标记
+db.Delete(&user)
+```
+## 五、HTTP 常用状态码
+200：成功
+400：参数错误
+401：未登录
+403：权限不足
+404：接口不存在
+500：服务器内部错误
